@@ -1,0 +1,219 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  height: 100%; /* Full height */
+  width: 100%; /* Full width */
+}
+
+.predictBackground {
+  background-image: url("../images/Desktop\ -\ 4.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex; /* Use flex to contain children */
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  align-items: center; /* Center children vertically */
+  overflow: hidden; /* Hide the overflow */
+}
+
+.predictLeftContainer {
+  /* background-color: pink; */
+  flex-basis: 920px; /* Adjust the width of the left container */
+  height: 100%; /* Adjust the height of the left container */
+  display: flex;
+  align-items: flex-start; /* Align the child elements to the top */
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.predictRightContainer {
+  /* background-color: aqua; */
+  flex-basis: 520px; /* Adjust the width of the right container */
+  height: 100%; /* Adjust the height of the right container */
+  display: flex;
+  align-items: flex-start; /* Align the child elements to the top */
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.imageBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+  margin-left: 113px;
+  background-color: rgb(255, 255, 255, 0.2);
+  width: 807px;
+  height: 473px;
+  border-radius: 20px;
+  align-items: center;
+  color: white;
+  font-size: 32px;
+}
+
+.imageContainer {
+  display: flex;
+  min-width: 745px;
+  min-height: 383px;
+  max-width: 745px;
+  max-height: 383px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 33px;
+  /* background-color: white; */
+}
+
+.predictBox {
+  margin-top: auto;
+  margin-bottom: 49px;
+  margin-left: 113px;
+  background-color: rgb(255, 255, 255, 0.1);
+  width: 807px;
+  height: 180px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.labelBox {
+  margin-top: 70px;
+  margin-left: 66px;
+}
+
+.labelBoxTitle {
+  width: 339px;
+  height: 77px;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+
+.line {
+  height: 1px; /* Thickness of the line */
+  width: 100%; /* Length of the line */
+  background-color: white; /* Color of the line */
+  margin-top: 14px; /* Space above the line */
+  margin-bottom: 10px; /* Space below the line */
+}
+
+.labelText {
+  margin-top: 18px;
+  font-size: 24px;
+  font-weight: normal;
+  color: white;
+}
+
+#prediction {
+  margin-top: 53px;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+
+.rectangle {
+  background-color: rgb(255, 255, 255, 0.2);
+  border-radius: 20px;
+  width: 313px;
+  height: 136px;
+  margin-top: 10px;
+  overflow-y: scroll;
+}
+
+.llContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 416px;
+  height: 118px;
+  /* background-color: rosybrown; */
+  margin-left: 24px;
+}
+
+.lrContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 322px;
+  height: 118px;
+  padding-left: 18px;
+  /* background-color: lightcoral; */
+}
+
+.lineVertical {
+  width: 1px;
+  height: 142px;
+  background-color: white;
+}
+
+#current {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.llComboBox {
+  width: 250px;
+  height: 23px;
+  margin-top: 10px; /* Adjust as needed */
+  border: 1px solid #c8defe; /* Example border */
+  border-radius: 5px;
+  background-color: #c8defe;
+  color: #00314c; /* Example color */
+}
+
+.selectLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  justify-content: flex-start;
+}
+
+.selectLineSwitch {
+  width: 322px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  justify-content: flex-start;
+}
+
+.selectLineRight {
+  width: 322px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+#advice {
+  font-size: 20px;
+  font-weight: normal;
+  color: white;
+  margin-top: 8px;
+}
+
+#adviceDescription {
+  font-size: 16px;
+  font-weight: normal;
+  color: white;
+  margin-top: 8px;
+}
+
+#analyticsDetail {
+  margin-top: 3px;
+  font-size: 20px;
+  font-weight: normal;
+  color: white;
+}
+
+.tempNum {
+  margin-left: auto;
+}

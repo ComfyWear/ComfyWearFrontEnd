@@ -1,0 +1,123 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  height: 100%; /* Full height */
+  width: 100%; /* Full width */
+}
+
+.homepageBackground {
+  background-image: url("../images/Desktop\ -\ 2-2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex; /* Use flex to contain children */
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  align-items: center; /* Center children vertically */
+  overflow: hidden; /* Hide the overflow */
+}
+
+.leftContainer {
+  flex-basis: 848px; /* Adjust the width of the left container */
+  height: 100%; /* Adjust the height of the left container */
+  display: flex;
+  align-items: flex-start; /* Align the child elements to the top */
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.comfy {
+  margin-left: 108px;
+  margin-top: 60px;
+  font-size: 140px;
+  font-weight: bold;
+  color: #00314c;
+}
+
+.wear {
+  margin-left: auto;
+  margin-right: 100px;
+  font-size: 140px;
+  font-weight: bold;
+  color: #00314c;
+}
+
+.link-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 60px;
+  width: 100%;
+  height: 136px;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+
+.rectangle1 {
+  background-color: rgb(255, 255, 255, 0.2); /* Example color */
+  border-radius: 20px;
+  min-width: 299px;
+  min-height: 136px;
+  margin-top: auto;
+  margin-left: 108px;
+  margin-right: 38px;
+}
+
+.rectangle1:hover {
+  background-color: rgb(255, 255, 255, 0.4); /* Example color */
+  cursor: pointer;
+}
+
+.rectangle2 {
+  background-color: rgb(255, 255, 255, 0.2);
+  border-radius: 20px;
+  min-width: 299px;
+  min-height: 136px;
+  margin-top: auto;
+  margin-right: 100px;
+}
+
+.rectangle2:hover {
+  background-color: rgb(255, 255, 255, 0.4); /* Example color */
+  cursor: pointer;
+}
+
+.headline {
+  margin: 26px;
+  margin-bottom: 0px;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+
+}
+
+.detail {
+  margin: 26px;
+  margin-top: 0px;
+  font-size: 20px;
+  font-weight: normal;
+  color: white;
+
+}
+
+.rightContainer {
+  /* Align to the right without specifying flex: 1 */
+  display: flex;
+  justify-content: flex-start; /* Align the child image to the right */
+  align-items: flex-start; /* Center the child image vertically */
+  flex-basis: 592px; /* Adjust the width of the right container */
+  height: 100%; /* Adjust the height of the right container */
+}
+
+.rightContainer img {
+  margin-top: auto;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: 132px;
+  max-width: 460px; /* Adjust the width of the image */
+  max-height: 693px; /* Adjust the height of the image */
+}
