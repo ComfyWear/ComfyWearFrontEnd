@@ -1,0 +1,393 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  height: 100%; /* Full height */
+  width: 100%; /* Full width */
+}
+
+.statisticsBackground {
+  background-image: url("../images/Desktop\ -\ 4.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex; /* Use flex to contain children */
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  align-items: center; /* Center children vertically */
+  overflow: hidden; /* Hide the overflow */
+}
+
+.statisticsContainerRight {
+  /* background-color: pink; */
+  flex-basis: 565px; /* Adjust the width of the left container */
+  height: 100%; /* Adjust the height of the left container */
+  display: flex;
+  align-items: flex-start; /* Align the child elements to the top */
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.statisticsContainerLeft {
+  /* background-color: aqua; */
+  flex-basis: 875px; /* Adjust the width of the right container */
+  height: 100%; /* Adjust the height of the right container */
+  display: flex;
+  align-items: flex-start; /* Align the child elements to the top */
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.statisticsContainerLeft h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 133px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.leftBox {
+  display: flex;
+  flex-direction: column;
+  margin-left: 113px;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 772px;
+  height: 529px;
+  border-radius: 20px;
+  align-items: center;
+  color: white;
+  overflow: hidden; /* Add this line to hide any overflow */
+}
+
+.leftBox h2 {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.comfortChart {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  max-width: 772px;
+  height: 100%; /* Add this line to make the carousel take up full height */
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel .slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Add this line to make each slide take up full height */
+}
+
+
+
+.rightBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 110px;
+  margin-left: 63px;
+  background-color: rgb(255, 255, 255, 0.2);
+  width: 399px;
+  height: 609px;
+  border-radius: 20px;
+  align-items: center;
+  color: white;
+  overflow-y: auto;
+}
+
+.statisticsContainer {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.statisticsTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.statisticsChart {
+  margin-bottom: 30px;
+}
+
+.statisticsDetails {
+  margin-bottom: 20px;
+}
+
+.statisticsDetails h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.statisticsDetails p {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.statisticsDetails ul {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.statisticsDetails li {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.disChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  /* background-color: rgba(255, 255, 255, 0.2); */
+}
+
+.disChart h3 {
+  margin-bottom: 20px;
+  color: white; /* Change the color of the chart title to white */
+}
+
+.comfortDetails {
+  margin-top: 20px;
+  width: 352px;
+  max-width: 352px;
+  height: 450px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+
+.detailBox {
+  /* background-color: rosybrown; */
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 16px;
+  align-items: flex-start;
+  padding-top: 20px;
+}
+
+.detailBox h4,
+.detailBox p,
+.detailBox h5,
+.detailBox ul {
+  margin: 10px;
+}
+
+.detailBox ul {
+  padding-left: 20px;
+}
+
+.uplowPart {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  max-height: 300px;
+}
+
+.tempHumidContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.tempHumidIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.comfortLevelContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%; /* Add this line to ensure the container takes up full width */
+}
+
+.comfortLevelCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #0088FE;
+  color: white;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.comfortLevelCount {
+  margin-left: auto;
+}
+
+/* Add the following styles for the combobox */
+.comfortLevelSelect {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  font-size: 14px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.leftBox h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: #ccc; */
+  transition: .4s;
+  /* border-radius: 34px; */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.headingContainer {
+  width: 772px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 113px;
+}
+
+.switchContainer {
+  margin-top: 120px;
+  margin-right: 0px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.switchLabel {
+  margin-right: 10px;
+  color: white;
+  font-size: 16px;
+}
+
+.imageContainer {
+  margin-top: 0px;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer .carousel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel .carousel-status,
+.carousel .thumbs-wrapper {
+  display: none;
+}
+
+
+.imageContainer .carousel .slide {
+  /* disable the slide */
+  display: flex;
+}
+
+.carousel.carousel-slider {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer img {
+  max-width: 683px;
+  max-height: 429px;
+  object-fit: contain;
+}
+
+.slider:before {
+  display: none;
+}
