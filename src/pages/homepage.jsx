@@ -10,6 +10,10 @@ const HomePage = () => {
         navigate('/prediction');
     }
 
+    const handleStatisticClick = () => {
+        navigate('/statistics');
+    }
+
     return (
         <div className="homepageBackground">
             <div className="leftContainer">
@@ -20,7 +24,7 @@ const HomePage = () => {
                         <div className='headline'>PREDICTION</div>
                         <div className='detail'>Get your comfort level from the prediction</div>
                     </div>
-                    <div className="rectangle2" onClick={handlePredictionClick}>
+                    <div className="rectangle2" onClick={handleStatisticClick}>
                         <div className='headline'>STATISTIC</div>
                         <div className='detail'>View our statistic from data collection</div>
                     </div>
