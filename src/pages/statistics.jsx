@@ -13,10 +13,10 @@ import pCurve from '../assets/images/model_sum/P_curve.png';
 import prCurve from '../assets/images/model_sum/PR_curve.png';
 
 
-
+// select 1 2 3 4 5 comfort level
 const Statistics = () => {
     const [data, setData] = useState(null);
-    const [selectedComfort, setSelectedComfort] = useState('1');
+    const [selectedComfort, setSelectedComfort] = useState('2');
     const [showCharts, setShowCharts] = useState(true);
 
     useEffect(() => {
@@ -43,6 +43,7 @@ const Statistics = () => {
     }
 
     const { avg_comfort_level, comfort_level_distribution, comfort_level_details, label_counts } = data;
+
 
     // Prepare data for the comfort level distribution bar chart
     const comfortLevelData = [
@@ -210,7 +211,7 @@ const Statistics = () => {
                                 <div className='detailBox'>
                                     <div className="comfortLevelContainer">
                                         <h4>Comfort Level <span className="comfortLevelCircle">{selectedComfort}</span></h4>
-                                        <p className="comfortLevelCount">Count: {comfort_level_details[selectedComfort].count}</p>
+                                        <p className="comfortLevelCount">Count: {comfort_level_details[selectedComfort]['count']}</p>
                                     </div>
                                     <div className='tempHumidContainer'>
                                         <img src={tempIcon} alt="Temperature" className='tempHumidIcon' />

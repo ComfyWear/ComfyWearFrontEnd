@@ -10,6 +10,7 @@ import { wait } from '@testing-library/user-event/dist/utils';
 
 const Prediction = () => {
     const [uuid, setUuid] = useState(''); // This is the unique identifier for the image that is uploaded
+    
     const [comfortLevel, setComfortLevel] = useState('');
     const [predictedComfort, setPredictedComfort] = useState([]);
     const [isToggled, setIsToggled] = useState(false);
@@ -27,9 +28,13 @@ const Prediction = () => {
     const [showFeedbackPopup, setShowFeedbackPopup] = useState(false);
 
     const [sensorDataReceived, setSensorDataReceived] = useState(false);
+    const [isImageUploaded, setIsImageUploaded] = useState(false);
+    const [detectedImageUrl, setDetectedImageUrl] = useState(null);
 
     useEffect(() => {
-        if (!connected) {
+        console.log('UUID before connect:', uuid);
+        if (!connected && uuid) {
+            console.log('Connecting ', uuid);
             const options = {
                 clientId: '',
                 username: 'b6510545381',
@@ -59,7 +64,9 @@ const Prediction = () => {
                 // Update the temperature and humidity state variables
                 setTemperature(data.temp);
                 setHumidity(data.humid);
+                console.log('uuid sendsensordata:', uuid);
                 sendSensorData(client, uuid);
+                console.log('uuid after sendsensordata:', uuid);
             });
 
             client.on('error', (err) => {
@@ -74,7 +81,7 @@ const Prediction = () => {
                 mqttClient.end();
             }
         };
-    }, [connected]);
+    }, [connected, uuid]);
 
 
     const handleComfortChange = (event) => {
@@ -91,9 +98,12 @@ const Prediction = () => {
             const reader = new FileReader();
             reader.onload = (e) => {
                 setImage(e.target.result);
-                console.log('Image uploaded', image);
                 const newUuid = uuidv4();
                 setUuid(newUuid);
+                console.log('UUID handlefilechange:', newUuid);
+                console.log('UUID jaaa:', uuid);
+                setIsImageUploaded(true);
+                
             };
             reader.readAsDataURL(file);
         }
@@ -101,20 +111,25 @@ const Prediction = () => {
     };
 
     useEffect(() => {
-        if (image && uuid) {
+        if (image && uuid && isImageUploaded && connected) {
+            // console.log('Image uploaded:', image);
+            console.log('UUID before publish:', uuid);
             publishSensorData(mqttClient, uuid);
+            setIsImageUploaded(false);
         }
-    }, [image, uuid, mqttClient]);
+    }, [image, uuid, mqttClient, isImageUploaded]);
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
     };
 
-    const publishSensorData = (mqttClient, newUuid) => {
-        mqttClient.publish('b6510545381/trigger_sensor', String(newUuid));
+    const publishSensorData = (mqttClient) => {
+        console.log('uuid in publishsensordata:', uuid);
+        mqttClient.publish('b6510545381/trigger_sensor', String(uuid));
     };
 
     const sendSensorData = (mqttClient, newUuid) => {
+        console.log('newuuid sensor:', newUuid);
         console.log('Sending sensor data');
         
         const formData = new FormData();
@@ -148,6 +163,7 @@ const Prediction = () => {
     };
 
     const handleUpload = (newUuid) => {
+        console.log('predict uuid ', newUuid);
         setIsLoading(true);
 
         const imageFormData = new FormData();
@@ -176,7 +192,7 @@ const Prediction = () => {
                         .then((response) => response.blob())
                         .then((blob) => {
                             const imageUrl = URL.createObjectURL(blob);
-                            setImage(imageUrl);
+                            setDetectedImageUrl(imageUrl);
                         })
                         .catch((error) => {
                             console.error('Error fetching detected image:', error);
