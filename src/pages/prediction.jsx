@@ -5,6 +5,7 @@ import LoadingPopup from './LoadingPopup';
 import FeedbackPopup from './FeedbackPopup';
 import { v4 as uuidv4 } from 'uuid';
 import mqtt from 'mqtt';
+import { wait } from '@testing-library/user-event/dist/utils';
 
 
 const Prediction = () => {
@@ -58,8 +59,7 @@ const Prediction = () => {
                 // Update the temperature and humidity state variables
                 setTemperature(data.temp);
                 setHumidity(data.humid);
-                setSensorDataReceived(true);
-                sendSensorData(client, uuid, image);
+                sendSensorData(client, uuid);
             });
 
             client.on('error', (err) => {
@@ -91,14 +91,20 @@ const Prediction = () => {
             const reader = new FileReader();
             reader.onload = (e) => {
                 setImage(e.target.result);
+                console.log('Image uploaded', image);
                 const newUuid = uuidv4();
                 setUuid(newUuid);
-                publishSensorData(mqttClient, newUuid);
             };
             reader.readAsDataURL(file);
         }
         event.target.value = null;
     };
+
+    useEffect(() => {
+        if (image && uuid) {
+            publishSensorData(mqttClient, uuid);
+        }
+    }, [image, uuid, mqttClient]);
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
@@ -109,54 +115,44 @@ const Prediction = () => {
     };
 
     const sendSensorData = (mqttClient, newUuid) => {
-        if (mqttClient) {
-            const checkSensorData = () => {
-                if (sensorDataReceived) {
-                    const formData = new FormData();
-                    formData.append('secret', newUuid);
-                    formData.append('local_temp', temperature);
-                    formData.append('local_humid', humidity);
+        console.log('Sending sensor data');
+        
+        const formData = new FormData();
+        formData.append('secret', newUuid);
+        formData.append('local_temp', temperature);
+        formData.append('local_humid', humidity);
 
-                    fetch('http://127.0.0.1:8000/app/api/sensor/', {
-                        method: 'POST',
-                        body: formData,
-                    })
-                        .then((response) => {
-                            if (response.ok) {
-                                return response.json();
-                            } else {
-                                throw new Error('Server returned an error');
-                            }
-                        })
-                        .then((data) => {
-                            console.log(data);
-                            setTemperature(data.data.attributes.local_temp);
-                            setHumidity(data.data.attributes.local_humid);
-                            setSensorDataReceived(false);
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        })
-                        .finally(() => {
-                            handleUpload(newUuid, image);
-                        });
+        fetch('http://127.0.0.1:8000/app/api/sensor/', {
+            method: 'POST',
+            body: formData,
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
                 } else {
-                    setTimeout(checkSensorData, 100);
+                    throw new Error('Server returned an error');
                 }
-            };
-
-            checkSensorData();
-        } else {
-            console.error('MQTT client is not connected');
-        }
+            })
+            .then((data) => {
+                console.log(data);
+                setTemperature(data.data.attributes.local_temp);
+                setHumidity(data.data.attributes.local_humid);
+                setSensorDataReceived(false);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                handleUpload(newUuid);
+            });
     };
 
-    const handleUpload = (newUuid, imageData) => {
+    const handleUpload = (newUuid) => {
         setIsLoading(true);
 
         const imageFormData = new FormData();
         imageFormData.append('secret', newUuid);
-        imageFormData.append('image', dataURItoBlob(imageData), 'image.png');
+        imageFormData.append('image', dataURItoBlob(image), 'image.png');
 
         fetch('http://127.0.0.1:8000/app/api/predict/', {
             method: 'POST',
