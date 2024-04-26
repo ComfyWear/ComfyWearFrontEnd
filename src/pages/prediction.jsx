@@ -169,7 +169,7 @@ const Prediction = () => {
         const imageFormData = new FormData();
         imageFormData.append('secret', newUuid);
         imageFormData.append('image', dataURItoBlob(image), 'image.png');
-
+        console.log('Image:', dataURItoBlob(image));
         fetch('http://127.0.0.1:8000/app/api/predict/', {
             method: 'POST',
             body: imageFormData,
