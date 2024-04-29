@@ -10,7 +10,7 @@ import { wait } from '@testing-library/user-event/dist/utils';
 
 const Prediction = () => {
     const [uuid, setUuid] = useState(''); // This is the unique identifier for the image that is uploaded
-    
+
     const [comfortLevel, setComfortLevel] = useState('');
     const [predictedComfort, setPredictedComfort] = useState([]);
     const [isToggled, setIsToggled] = useState(false);
@@ -18,8 +18,8 @@ const Prediction = () => {
     const fileInputRef = useRef(null);
 
     const [clothes, setClothes] = useState([]);
-    const [temperature, setTemperature] = useState(25);
-    const [humidity, setHumidity] = useState(60);
+    const [temperature, setTemperature] = useState('');
+    const [humidity, setHumidity] = useState('');
     const [client, setClient] = useState(null);
     const [mqttClient, setMqttClient] = useState(null);
 
@@ -64,9 +64,7 @@ const Prediction = () => {
                 // Update the temperature and humidity state variables
                 setTemperature(data.temp);
                 setHumidity(data.humid);
-                console.log('uuid sendsensordata:', uuid);
-                sendSensorData(client, uuid);
-                console.log('uuid after sendsensordata:', uuid);
+                sendSensorData(client, uuid, data.temp, data.humid);
             });
 
             client.on('error', (err) => {
@@ -103,7 +101,7 @@ const Prediction = () => {
                 console.log('UUID handlefilechange:', newUuid);
                 console.log('UUID jaaa:', uuid);
                 setIsImageUploaded(true);
-                
+
             };
             reader.readAsDataURL(file);
         }
@@ -124,18 +122,23 @@ const Prediction = () => {
     };
 
     const publishSensorData = (mqttClient) => {
-        console.log('uuid in publishsensordata:', uuid);
-        mqttClient.publish('b6510545381/trigger_sensor', String(uuid));
+        if (mqttClient && mqttClient.connected) {
+            console.log('uuid in publishsensordata:', uuid);
+            mqttClient.publish('b6510545381/trigger_sensor', String(uuid));
+        } else {
+            console.error('MQTT client is not connected');
+        }
     };
+    
 
-    const sendSensorData = (mqttClient, newUuid) => {
+    const sendSensorData = (mqttClient, newUuid, temp, humid) => {
         console.log('newuuid sensor:', newUuid);
         console.log('Sending sensor data');
-        
+
         const formData = new FormData();
         formData.append('secret', newUuid);
-        formData.append('local_temp', temperature);
-        formData.append('local_humid', humidity);
+        formData.append('local_temp', temp);
+        formData.append('local_humid', humid);
 
         fetch('http://127.0.0.1:8000/app/api/sensor/', {
             method: 'POST',
@@ -259,7 +262,9 @@ const Prediction = () => {
                 {!isToggled ? (
                     <div className="imageBox">
                         <div className='imageContainer'>
-                            {image ? (
+                            {detectedImageUrl ? (
+                                <img src={detectedImageUrl} alt="Detected" style={{ maxWidth: '745px', maxHeight: '383px', borderRadius: '10px' }} />
+                            ) : image ? (
                                 <img src={image} alt="Uploaded" style={{ maxWidth: '745px', maxHeight: '383px', borderRadius: '10px' }} />
                             ) : (
                                 <div style={{ color: 'white', textAlign: 'center' }}>UPLOAD IMAGE</div>
