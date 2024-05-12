@@ -65,11 +65,19 @@ const Statistics = () => {
         value: count,
     }));
 
-    const scatterData = Object.entries(comfort_level_details).map(([comfort, details]) => ({
-        comfort: parseInt(comfort),
-        avgTemp: details.avg_temp,
-        avgHumid: details.avg_humid,
-    }));
+    // const scatterData = Object.entries(comfort_level_details).map(([comfort, details]) => ({
+    //     comfort: parseInt(comfort),
+    //     avgTemp: details.avg_temp,
+    //     avgHumid: details.avg_humid,
+    // }));
+
+    const scatterData = [
+        { avgTemp: 25, avgHumid: 60, comfort: 3 },
+        { avgTemp: 31, avgHumid: 52, comfort: 2 },
+        { avgTemp: 28, avgHumid: 49, comfort: 4 },
+        { avgTemp: 33, avgHumid: 68, comfort: 1 },
+        { avgTemp: 25, avgHumid: 45, comfort: 5 }
+    ];
 
     // Custom colors for the pie chart
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF'];

@@ -1,18 +1,18 @@
-# Getting Started with Create React App
+# Installation Guide
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+### Prerequisites
+Before you begin, ensure you have the following installed on your system:
 
-### `npm start`
+Node.js (at least version 21 or higher)
+npm (usually comes with Node.js)
+You can check the versions of Node.js and npm installed on your system by running:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+node -v
+npm -v
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 

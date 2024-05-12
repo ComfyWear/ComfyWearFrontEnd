@@ -26,6 +26,7 @@ const Prediction = () => {
     const [connected, setConnected] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showFeedbackPopup, setShowFeedbackPopup] = useState(false);
+    const [reccomendClothe, setReccomendClothe] = useState('');
 
     const [sensorDataReceived, setSensorDataReceived] = useState(false);
     const [isImageUploaded, setIsImageUploaded] = useState(false);
@@ -187,6 +188,8 @@ const Prediction = () => {
             .then((data) => {
                 console.log(data);
                 setClothes(data.data.predictions);
+                setReccomendClothe('Wear a short sleeve top and a shorts');
+                
                 setPredictedComfort(data.data.comfort_level);
 
                 if (data.data.images && data.data.images.length > 0) {
@@ -270,6 +273,7 @@ const Prediction = () => {
                                 <div style={{ color: 'white', textAlign: 'center' }}>UPLOAD IMAGE</div>
                             )}
                         </div>
+                        
                         <div className="uploadButton" style={{ textAlign: 'center' }}>
                             <input type="file" id="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
                             <Button
@@ -302,11 +306,11 @@ const Prediction = () => {
                         <div className='selectLine'>
                             <select value={comfortLevel} onChange={handleComfortChange} className="llComboBox">
                                 <option value="">Rate your current comfort level</option>
-                                <option value="Too humid">Too humid</option>
-                                <option value="neutral">Too dry</option>
-                                <option value="uncomfortable">Too cold</option>
-                                <option value="uncomfortable">Too warm</option>
-                                <option value="uncomfortable">Comfortable</option>
+                                <option value="1">1 - Very Uncomfortable</option>
+                                <option value="2">2 - Uncomfortable</option>
+                                <option value="3">3 - Neutral</option>
+                                <option value="4">4 - Comfortable</option>
+                                <option value="5">5 - Very Comfortable</option>
                             </select>
                             <Button
                                 onClick={handleFeedback}
@@ -330,7 +334,7 @@ const Prediction = () => {
                             </Button>
                         </div>
                         <div className='llText' id='advice'>Advice to get more comfort</div>
-                        <div className='llText' id='adviceDescription'>Wear a light jacket</div>
+                        <div className='llText' id='adviceDescription'>{reccomendClothe}</div>
                     </div>
                     <div className='lineVertical'></div>
                     <div className='lrContainer'>
